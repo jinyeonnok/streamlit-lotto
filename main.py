@@ -38,14 +38,19 @@ with tab2:
 with tab3:
             
     st.markdown(
-     """
-     <div style="line-height:1.2;">
-         고정 번호를 입력하세요<br>
-         <span style="font-size: 0.9em; color: gray;">(예: 공백 또는 3, 5, 12)</span>
-     </div>
-     """,
-     unsafe_allow_html=True
-    )
+                 """
+                 <style>
+                 div.stTextInput > label { margin-top: -10px; }
+                 </style>
+                 
+                 <div style="line-height:1.2;">
+                     고정 번호를 선택하시겠습니까?<br>
+                     <span style="font-size: 0.9em; color: gray;">(예: 공백 또는 3, 5, 12)</span>
+                 </div>
+                 """,
+                 unsafe_allow_html=True
+                )
+    
     
     # 고정 번호 입력 (숫자만 허용)
     input_numbers = st.text_input("")
