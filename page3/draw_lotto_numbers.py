@@ -54,12 +54,12 @@ def analyze_number(df, draw_number, number) -> dict:
 
     # 3. 최근 100회차 출현 횟수
     start_index = draw_number 
-    end_index = draw_number - 101
+    end_index = draw_number - 100
     recent_100_count = df.loc[start_index : end_index].isin([number]).sum().sum()
     
     # 4. 최근 4회차 출현 횟수
     start_index = draw_number 
-    end_index = draw_number - 5
+    end_index = draw_number - 4
     recent_4_count = df.loc[start_index : end_index].isin([number]).sum().sum()
     
     return {
