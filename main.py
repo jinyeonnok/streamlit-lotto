@@ -36,15 +36,19 @@ with tab2:
     display_past_records(lotto_instance, 최근회차)
 
 with tab3:
-    
-    
-    # 설명을 접어둘 수 있는 상태로 표시
-    with st.expander("고정 번호 입력 가이드"):
-        st.write("고정 번호를 입력하세요 (예: 공백 또는 3, 5, 12)")
+            
+    st.markdown(
+     """
+     <div style="line-height:1.2;">
+         고정 번호를 입력하세요<br>
+         <span style="font-size: 0.9em; color: gray;">(예: 공백 또는 3, 5, 12)</span>
+     </div>
+     """,
+     unsafe_allow_html=True
+    )
     
     # 고정 번호 입력 (숫자만 허용)
     input_numbers = st.text_input("")
-    
     
     # 사용자가 몇 개의 번호를 추첨할지 입력할 수 있는 텍스트 입력 필드 추가
     num_draws = st.number_input('몇 개의 추가 번호를 뽑으시겠습니까?', min_value=1, max_value=10, value=3)
