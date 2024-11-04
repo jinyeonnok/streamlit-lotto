@@ -86,7 +86,83 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
 
 
     # Streamlit에서 제목 설정
-    st.title("로또 번호의 연속 출현 횟수")
+    st.title("최근 100회 출현 횟수")
+
+    # x축 및 y축 설정
+    x = 통계["번호"]
+    y = 통계["최근 100회차 출현 횟수"]
+
+    # 색상 설정
+    colors = plt.cm.coolwarm(np.interp(y, (y.min(), y.max()), (0, 1)))
+
+    # 그래프를 그리기 위한 상태 관리
+    if 'zoomed' not in st.session_state:
+        st.session_state.zoomed = False  # 초기 상태는 축소된 상태
+
+    # 그래프를 그리기
+    plt.figure(figsize=(12, 6))
+    bars = plt.bar(x, y, color=colors)
+
+    # x축의 눈금 설정 (2당 하나씩)
+    plt.xticks(ticks=x[::2], labels=x[::2])
+
+    # 그래프 레이블 및 제목 설정
+    plt.title("각 번호에 대한 연속 미출현 횟수", fontproperties=font_prop, fontsize=16)
+    plt.xlabel("로또 번호", fontproperties=font_prop, fontsize=14)
+    plt.ylabel("연속 미출현 횟수", fontproperties=font_prop, fontsize=14)
+
+    # 각 막대 위에 번호 표시
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2, yval, int(yval), ha='center', va='bottom', fontproperties=font_prop)
+
+    # 그래프를 Streamlit에 표시
+    st.pyplot(plt)
+    plt.close()  # Streamlit에서 plt 객체를 클리어
+    
+    
+    
+    # Streamlit에서 제목 설정
+    st.title("최근 한 달 출현 횟수")
+
+    # x축 및 y축 설정
+    x = 통계["번호"]
+    y = 통계["최근 4회차 출현 횟수"]
+
+    # 색상 설정
+    colors = plt.cm.coolwarm(np.interp(y, (y.min(), y.max()), (0, 1)))
+
+    # 그래프를 그리기 위한 상태 관리
+    if 'zoomed' not in st.session_state:
+        st.session_state.zoomed = False  # 초기 상태는 축소된 상태
+
+    # 그래프를 그리기
+    plt.figure(figsize=(12, 6))
+    bars = plt.bar(x, y, color=colors)
+
+    # x축의 눈금 설정 (2당 하나씩)
+    plt.xticks(ticks=x[::2], labels=x[::2])
+
+    # 그래프 레이블 및 제목 설정
+    plt.title("각 번호에 대한 연속 미출현 횟수", fontproperties=font_prop, fontsize=16)
+    plt.xlabel("로또 번호", fontproperties=font_prop, fontsize=14)
+    plt.ylabel("연속 미출현 횟수", fontproperties=font_prop, fontsize=14)
+
+    # 각 막대 위에 번호 표시
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width() / 2, yval, int(yval), ha='center', va='bottom', fontproperties=font_prop)
+
+    # 그래프를 Streamlit에 표시
+    st.pyplot(plt)
+    plt.close()  # Streamlit에서 plt 객체를 클리어
+
+
+
+
+
+    # Streamlit에서 제목 설정
+    st.title("로또 번호 연속 출현 횟수")
 
     # x축 및 y축 설정
     x = 통계["번호"]
@@ -132,7 +208,7 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
 
 
     # Streamlit에서 제목 설정
-    st.title("로또 번호의 연속 미출현 횟수")
+    st.title("로또 번호 연속 미출현 횟수")
 
     # x축 및 y축 설정
     x = 통계["번호"]
