@@ -2,9 +2,12 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+from matplotlib import font_manager
 import numpy as np
 
 from page3 import draw_lotto_numbers
+
+
 
 # 색상 지정 함수
 def get_color(number):
@@ -79,11 +82,13 @@ def display_current_numbers(lotto_instance,최근회차,전체기록):
         통계.append(draw_lotto_numbers.analyze_number(전체기록, 최근회차, i))
     
     통계 = pd.DataFrame(통계)
-            
-    # 한글 폰트 설정
-    plt.rcParams['font.family'] =  'NanumGothic'
-    plt.rcParams['font.size'] = 12  # 폰트 크기 설정
     
+        
+    # 사용자 지정 폰트 로드
+    font_path = 'fonts/NotoSansKR-VariableFont_wght.ttf'  # 경로를 조정하세요
+    font_prop = font_manager.FontProperties(fname=font_path)
+            
+        
     # Streamlit에서 제목 설정
     st.title("로또 번호의 연속 미출현 횟수")
     
@@ -102,19 +107,18 @@ def display_current_numbers(lotto_instance,최근회차,전체기록):
     plt.xticks(ticks=x[::2], labels=x[::2])  # 3당 하나씩 보이도록 설정
     
     # 그래프 레이블 및 제목 설정
-    plt.title("각 번호에 대한 연속 미출현 횟수")
-    plt.xlabel("로또 번호")
-    plt.ylabel("연속 미출현 횟수")
+    plt.title("각 번호에 대한 연속 미출현 횟수", fontproperties=font_prop, fontsize=16)
+    plt.xlabel("로또 번호", fontproperties=font_prop, fontsize=14)
+    plt.ylabel("연속 미출현 횟수", fontproperties=font_prop, fontsize=14)
     
     # 각 막대 위에 번호 표시
     for bar in bars:
         yval = bar.get_height()
-        plt.text(bar.get_x() + bar.get_width()/2, yval, int(yval), ha='center', va='bottom')
+        plt.text(bar.get_x() + bar.get_width()/2, yval, int(yval), ha='center', va='bottom', fontproperties=font_prop)
     
     # 그래프를 Streamlit에 표시
     st.pyplot(plt)
     plt.close()  # Streamlit에서 plt 객체를 클리어
-    
     
     
     
