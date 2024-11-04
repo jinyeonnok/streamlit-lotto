@@ -66,6 +66,7 @@ def display_lotto_numbers(numbers):
 
 
 def display_current_numbers(lotto_instance,최근회차,전체기록):
+    
     st.header("당첨 번호")    
     당첨번호 = lotto_instance.check_num(최근회차)
     display_lotto_numbers(당첨번호)
@@ -82,6 +83,8 @@ def display_current_numbers(lotto_instance,최근회차,전체기록):
     # Streamlit에서 제목 설정
     st.title("로또 번호의 연속 미출현 횟수")
     
+        
+        
     # x축 및 y축 설정
     x = 통계["번호"]
     y = 통계["연속 미출현 횟수"]
@@ -90,13 +93,19 @@ def display_current_numbers(lotto_instance,최근회차,전체기록):
     colors = plt.cm.coolwarm(np.interp(y, (y.min(), y.max()), (0, 1)))
     
     # 그래프 그리기
-    plt.figure(figsize=(10, 6))
+    plt.figure(figsize=(12, 6))
     bars = plt.bar(x, y, color=colors)
     
     # 그래프 레이블 및 제목 설정
     plt.title("각 번호에 대한 연속 미출현 횟수")
     plt.xlabel("로또 번호")
     plt.ylabel("연속 미출현 횟수")
+    
+    # 각 막대 위에 번호 표시
+    for bar in bars:
+        yval = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width()/2, yval, int(yval), ha='center', va='bottom')
+
     
     # 그래프를 Streamlit에 표시
     st.pyplot(plt)

@@ -6,6 +6,19 @@ from my_html.tab1 import display_current_numbers
 from my_html.tab2 import display_past_records    
 from my_html.tab3 import draw_number    
 
+# Google Fonts CSS 링크
+st.markdown(
+    """
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap');
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 # Lotto_class의 인스턴스 생성
 lotto_instance = Lotto_class()
