@@ -43,4 +43,4 @@ with tab3:
     # 생성 버튼 추가
     if st.button('번호 생성'):
         st.write("생성된 번호 :")
-        draw_number(num_draws,최근회차)  # 입력받은 숫자를 draw_number 함수에 전달
+        draw_number(최근회차, 전체기록, n = 1)  # 입력받은 숫자를 draw_number 함수에 전달
