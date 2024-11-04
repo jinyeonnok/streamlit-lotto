@@ -22,12 +22,12 @@ def display_lotto_numbers(numbers):
     lotto_balls_html = '<div class="lotto-container">'
     for value in numbers.values():
         color = get_color(value)
-        lotto_balls_html += f'<div class="lotto-ball" style="background-color: {color};">{value}</div>'
+        lotto_balls_html += f'<div class="lotto-ball" style="background-color: {color}; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; margin: 5px; color: white; font-weight: bold;">{value}</div>'
     lotto_balls_html += '</div>'
     st.markdown(lotto_balls_html, unsafe_allow_html=True)
 
 def display_current_numbers(lotto_instance):
-    st.header("현재 당첨 번호")    
+    st.header("당첨 번호")    
     최근회차 = lotto_instance.최근회차()
     당첨번호 = lotto_instance.check_num(최근회차)
     display_lotto_numbers(당첨번호)
