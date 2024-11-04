@@ -83,18 +83,6 @@ def display_current_numbers(lotto_instance,최근회차,전체기록):
     # Streamlit에서 제목 설정
     st.title("로또 번호의 연속 미출현 횟수")
 
-    st.markdown(
-        """
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap');
-
-            body {
-                font-family: 'Noto Sans KR', sans-serif;
-            }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
         
     # x축 및 y축 설정
     x = 통계["번호"]
@@ -107,8 +95,9 @@ def display_current_numbers(lotto_instance,최근회차,전체기록):
     plt.figure(figsize=(12, 6))
     bars = plt.bar(x, y, color=colors)
     
-    # x축의 눈금 설정 (1부터 45까지)
-    plt.xticks(ticks=x, labels=x)
+    # x축의 눈금 설정 (3당 하나씩)
+    plt.xticks(ticks=x[::3], labels=x[::3])  # 3당 하나씩 보이도록 설정
+    
     
     # 그래프 레이블 및 제목 설정
     plt.title("각 번호에 대한 연속 미출현 횟수")
@@ -120,9 +109,14 @@ def display_current_numbers(lotto_instance,최근회차,전체기록):
         yval = bar.get_height()
         plt.text(bar.get_x() + bar.get_width()/2, yval, int(yval), ha='center', va='bottom')
     
+    
+    # 한글 폰트 설정
+    plt.rcParams['font.family'] = 'Noto Sans KR'
+    plt.rcParams['font.size'] = 12  # 폰트 크기 설정
+    
     # 그래프를 Streamlit에 표시
     st.pyplot(plt)
-    
+    plt.close() 
     
     
     
