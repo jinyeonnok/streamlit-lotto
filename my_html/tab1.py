@@ -1,5 +1,10 @@
 # tab1
 import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+from page3 import draw_lotto_numbers
 
 # 색상 지정 함수
 def get_color(number):
@@ -53,16 +58,48 @@ def display_lotto_numbers(numbers):
     
     st.markdown(lotto_balls_html, unsafe_allow_html=True)
 
-def display_current_numbers(lotto_instance):
+
+
+
+
+
+
+
+def display_current_numbers(lotto_instance,최근회차,전체기록):
     st.header("당첨 번호")    
-    최근회차 = lotto_instance.최근회차()
     당첨번호 = lotto_instance.check_num(최근회차)
     display_lotto_numbers(당첨번호)
     
+    통계 = []
+    for i in range(1,46):
+        '''
+        print(draw_lotto_numbers.analyze_number(전체기록, 최근회차, 1))
+        '''
+        통계.append(draw_lotto_numbers.analyze_number(전체기록, 최근회차, i))
     
+    통계 = pd.DataFrame(통계)
+        
+    # Streamlit에서 제목 설정
+    st.title("로또 번호의 연속 미출현 횟수")
     
+    # x축 및 y축 설정
+    x = 통계["번호"]
+    y = 통계["연속 미출현 횟수"]
     
+    # 색상 설정
+    colors = plt.cm.coolwarm(np.interp(y, (y.min(), y.max()), (0, 1)))
     
+    # 그래프 그리기
+    plt.figure(figsize=(10, 6))
+    bars = plt.bar(x, y, color=colors)
+    
+    # 그래프 레이블 및 제목 설정
+    plt.title("각 번호에 대한 연속 미출현 횟수")
+    plt.xlabel("로또 번호")
+    plt.ylabel("연속 미출현 횟수")
+    
+    # 그래프를 Streamlit에 표시
+    st.pyplot(plt)
     
     
     

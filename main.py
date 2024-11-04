@@ -20,27 +20,23 @@ def load_all_records():
 
 # 전체 기록을 한 번만 불러오기
 전체기록 = load_all_records()
+최근회차 = lotto_instance.최근회차()
 
 st.title('이번주 당첨번호')
-
-최근회차 = lotto_instance.최근회차()
 st.title(f'최근 회차 : {최근회차}')
 
 
 # 탭 추가
-tab1, tab2, tab3 = st.tabs(["현재 당첨 번호", "과거 당첨 기록", "AI 로또 추첨기"])
+tab1, tab2, tab3 = st.tabs(["당첨 번호", "과거 당첨 기록", "AI 로또 추첨기"])
 
 with tab1:
-    display_current_numbers(lotto_instance)
+    display_current_numbers(lotto_instance,최근회차, 전체기록)
 
 with tab2:
     display_past_records(lotto_instance, 최근회차)
 
 with tab3:
-    # # 기존 번호 표시
-    # st.write("기존 번호:")
-    # draw_number(3)  # 기존에 나와 있는 3개의 번호를 출력
-
+    
     # 사용자가 몇 개의 번호를 추첨할지 입력할 수 있는 텍스트 입력 필드 추가
     num_draws = st.number_input('몇 개의 추가 번호를 뽑으시겠습니까?', min_value=1, max_value=10, value=3)
 

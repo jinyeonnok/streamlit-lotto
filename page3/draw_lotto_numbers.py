@@ -22,11 +22,11 @@ try:
 except Exception as e:
     st.error(f"모델 로드 중 에러 발생: {e}")
 
-def analyze_number(df, draw_number, number):
+def analyze_number(df, draw_number, number) -> dict:
     '''
     df = 전체기록
     draw_number = 1144
-    number = 21
+    number = 1
     '''
     
     # 분석할 회차
@@ -37,7 +37,7 @@ def analyze_number(df, draw_number, number):
     
     # 1. 연속 출현 횟수
     consecutive_count = 0
-    for i in range(current_draw_index - 1, 0, -1):  # 0보다 클 때까지
+    for i in range(current_draw_index, 0, -1):  # 0보다 클 때까지
         if number in df.loc[i].values:
             consecutive_count += 1
         else:
@@ -45,19 +45,20 @@ def analyze_number(df, draw_number, number):
 
     # 2. 연속 미출현 횟수
     consecutive_non_appearance = 0
-    for i in range(current_draw_index - 1, 0, -1):  # 0보다 클 때까지
+    for i in range(current_draw_index , 0, -1):  # 0보다 클 때까지
         if number not in df.loc[i].values:
+            # print(df.loc[i].values)
             consecutive_non_appearance += 1
         else:
             break
 
     # 3. 최근 100회차 출현 횟수
-    start_index = draw_number - 1
+    start_index = draw_number 
     end_index = draw_number - 101
     recent_100_count = df.loc[start_index : end_index].isin([number]).sum().sum()
     
     # 4. 최근 4회차 출현 횟수
-    start_index = draw_number - 1
+    start_index = draw_number 
     end_index = draw_number - 5
     recent_4_count = df.loc[start_index : end_index].isin([number]).sum().sum()
     
@@ -71,7 +72,7 @@ def analyze_number(df, draw_number, number):
         "최근 4회차 출현 횟수": recent_4_count,
     }
 
-def draw_lotto_numbers(최근회차, 전체기록, scaler):
+def draw_lotto_numbers(최근회차, 전체기록, scaler) -> pd.DataFrame:
     results = []
     for number in range(1, 46):
         record = pd.DataFrame([analyze_number(전체기록, 최근회차, number)])
@@ -101,35 +102,5 @@ def draw_lotto_numbers(최근회차, 전체기록, scaler):
 
     return df_numbers
 
-if __name__ == '__main__':
-    # Lotto_class의 인스턴스 생성
-    lotto_instance = Lotto_class()
-    최근회차 = lotto_instance.최근회차()
-    전체기록 = pd.DataFrame(lotto_instance.download_records(1, 최근회차)).transpose()
-    전체기록.index = 전체기록.index.str.replace('회차', '').astype(int)
 
-    추첨_n회 = []
-    # 여러 번 시도하여 결과 출력
-    for _ in range(10):  # 10번 반복
-        추첨번호 = draw_lotto_numbers(최근회차, 전체기록, scaler) 
-        print(_+1, 추첨번호.values)
-        
-        추첨_n회.append(pd.DataFrame(추첨번호)) 
-
-    추첨_n회 = pd.concat(추첨_n회)
-    추첨_n회 = 추첨_n회.reset_index(drop=True)
-    
-    from collections import Counter
-    
-    flat_list = 추첨_n회.values.flatten()
-    
-    # 빈도수 계산
-    frequency = Counter(flat_list)
-    
-    # 데이터프레임으로 변환
-    추첨번호_빈도 = pd.DataFrame(frequency.items(), columns=['번호', '출현 횟수'])
-    
-    # 데이터프레임 정렬
-    추첨번호_빈도 = 추첨번호_빈도.sort_values(by='번호').reset_index(drop=True)
-
-
+# analyze_number(전체기록, 최근회차, 1)
