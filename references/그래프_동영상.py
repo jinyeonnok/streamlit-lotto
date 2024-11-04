@@ -23,7 +23,6 @@ df.set_index('회차', inplace=True)
 
 #%%
 
-df = 과거기록
 # 번호 출현 빈도 계산
 numbers = np.arange(1, 46)  # 1부터 45까지의 번호
 frequency = np.zeros((len(df), len(numbers)))

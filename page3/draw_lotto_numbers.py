@@ -76,6 +76,7 @@ def draw_lotto_numbers(최근회차, 전체기록, scaler = scaler) -> pd.DataFr
     results = []
     for number in range(1, 46):
         record = pd.DataFrame([analyze_number(전체기록, 최근회차, number)])
+        record['연속 미출현 횟수'] = record['연속 미출현 횟수'] * 2
         
         features = pd.DataFrame(record[['연속 출현 횟수', '연속 미출현 횟수', '최근 100회차 출현 횟수', '최근 4회차 출현 횟수']]).reset_index(drop=True)
         
@@ -93,6 +94,7 @@ def draw_lotto_numbers(최근회차, 전체기록, scaler = scaler) -> pd.DataFr
         results.append(result)    
     
     results = pd.concat(results)
+    
     results['확률'] = results['확률'] / results['확률'].sum()
     
     selected_numbers = np.random.choice(results['번호'], size=6, replace=False, p=results['확률'])
@@ -104,3 +106,24 @@ def draw_lotto_numbers(최근회차, 전체기록, scaler = scaler) -> pd.DataFr
 
 
 # analyze_number(전체기록, 최근회차, 1)
+
+if __name__ == '__main__':
+    
+    test = []
+    
+    for i in range(0,100):
+        test.append(draw_lotto_numbers(최근회차,전체기록))
+
+    test = pd.concat(test)
+        
+        
+    # 각 번호의 출현 횟수 계산
+    total_counts = test.values.flatten()  # 데이터프레임을 1차원 배열로 변환
+    number_counts = pd.Series(total_counts).value_counts().sort_index()  # 각 번호의 출현 횟수 계산
+    
+    # 출현 횟수를 데이터프레임으로 변환
+    number_counts_df = number_counts.reset_index()
+    number_counts_df.columns = ['번호', '출현 횟수']  # 컬럼 이름 설정
+    
+    # 결과 출력
+    print(number_counts_df)
