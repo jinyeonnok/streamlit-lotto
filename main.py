@@ -28,8 +28,8 @@ st.title(f'최근 회차 : {최근회차}')
 
 
 
-# 사이드바로 메뉴 선택
-selected_option = st.sidebar.selectbox("메뉴 선택", ["당첨 번호", "과거 당첨 기록", "AI 로또 추첨기", "당첨 주소"])
+# Selectbox로 메뉴 선택
+selected_option = st.selectbox("메뉴 선택", ["당첨 번호", "과거 당첨 기록", "AI 로또 추첨기", "당첨 주소"])
 
 if selected_option == "당첨 번호":
     display_current_numbers(lotto_instance, 최근회차, 전체기록)
@@ -76,7 +76,6 @@ elif selected_option == "당첨 주소":
     
     # Google Maps iframe 사용
     st.markdown('<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.371067633137!2d126.97865241502782!3d37.56654197979855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2ef8e8c5d61%3A0xf1de5e8d8e6de2c1!2sSeoul!5e0!3m2!1sen!2skr!4v1633124003205!5m2!1sen!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>', unsafe_allow_html=True)
-    
     
 
 # # 탭 추가
