@@ -3,8 +3,6 @@
 from page3 import draw_lotto_numbers
 import streamlit as st
 
-
-
 # 색상 지정 함수
 def get_color(number):
     number = int(number)
@@ -57,12 +55,7 @@ def display_lotto_numbers(numbers):
     
     st.markdown(lotto_balls_html, unsafe_allow_html=True)
 
-
-
-def draw_number(n = 1):
-
-    for n in range(0,n):
+def draw_number(n=1):
+    for _ in range(n):  # n을 사용하여 지정된 횟수만큼 반복
         draw_numbers = draw_lotto_numbers.draw_lotto_numbers(draw_lotto_numbers.최근회차)
-        # display_lotto_numbers(draw_numbers.iloc[0])
-        
         display_lotto_numbers(draw_numbers.iloc[0].to_dict())

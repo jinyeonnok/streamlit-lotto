@@ -18,39 +18,12 @@ def get_color(number):
         return "#000000"  # 기본 색상
 
 def display_lotto_numbers(numbers):
-    lotto_balls_html = '''
-    <style>
-        .lotto-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .lotto-ball {
-            border-radius: 50%;
-            width: 50px;  /* 기본 너비 */
-            height: 50px; /* 기본 높이 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 5px;
-            color: white;
-            font-weight: bold;
-        }
-        @media (max-width: 600px) { /* 모바일 화면 */
-            .lotto-ball {
-                width: 40px;  /* 모바일에서는 너비를 줄임 */
-                height: 40px; /* 모바일에서는 높이를 줄임 */
-            }
-        }
-    </style>
-    <div class="lotto-container">
-    '''
-    
+    print(numbers)
+    lotto_balls_html = '<div class="lotto-container">'
     for value in numbers.values():
         color = get_color(value)
         lotto_balls_html += f'<div class="lotto-ball" style="background-color: {color};">{value}</div>'
     lotto_balls_html += '</div>'
-    
     st.markdown(lotto_balls_html, unsafe_allow_html=True)
 
 def display_current_numbers(lotto_instance):
