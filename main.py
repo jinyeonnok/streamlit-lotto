@@ -7,6 +7,26 @@ from my_html.tab2 import display_past_records
 from my_html.tab3 import draw_number    
 
 
+
+st.markdown(
+    """
+    <head>
+        <meta property="og:title" content="내 Streamlit 애플리케이션" />
+        <meta property="og:description" content="1등 5번만 하자" />
+        <meta property="og:image" content="https://blog.kakaocdn.net/dn/Nfztm/btsKwONI8Va/yoGifXJF9EVMihkuRQbOB0/img.png" />
+        <meta property="og:url" content="https://nryotoxmeyrvjplwba3ohf.streamlit.app/display" />
+    </head>
+    """,
+    unsafe_allow_html=True
+)
+
+
+
+
+
+
+
+
 # Lotto_class의 인스턴스 생성
 lotto_instance = Lotto_class()
 
@@ -72,7 +92,9 @@ elif selected_option == "AI 로또 추첨기":
         draw_number(최근회차, 전체기록, picked_num, num_draws)  # 입력받은 숫자를 draw_number 함수에 전달
 
 elif selected_option == "당첨 주소":
-    st.title('Google Maps Example')
+    
+    
+    st.title('')
     
     # Google Maps iframe 사용
     st.markdown('<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.371067633137!2d126.97865241502782!3d37.56654197979855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2ef8e8c5d61%3A0xf1de5e8d8e6de2c1!2sSeoul!5e0!3m2!1sen!2skr!4v1633124003205!5m2!1sen!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>', unsafe_allow_html=True)
