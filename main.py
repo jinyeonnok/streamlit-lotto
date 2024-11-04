@@ -37,6 +37,8 @@ with tab2:
 
 with tab3:
     
+    input_numbers = st.text_input("고정 번호를 입력하세요 (예: 3, 5, 12 또는 공백):")
+    
     # 사용자가 몇 개의 번호를 추첨할지 입력할 수 있는 텍스트 입력 필드 추가
     num_draws = st.number_input('몇 개의 추가 번호를 뽑으시겠습니까?', min_value=1, max_value=10, value=3)
 
@@ -44,7 +46,6 @@ with tab3:
     if st.button('번호 생성'):
         st.write("생성된 번호 :")
         
-        input_numbers = st.text_input("고정 번호를 입력하세요 (쉼표로 구분, 예: 3, 5, 12):")
 
         # 입력한 숫자 리스트로 변환
         if input_numbers:
