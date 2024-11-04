@@ -86,7 +86,7 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
 
 
     # Streamlit에서 제목 설정
-    st.title("최근 100회 출현 횟수")
+    st.title("최근 100회 출현")
 
     # x축 및 y축 설정
     x = 통계["번호"]
@@ -123,7 +123,7 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
     
     
     # Streamlit에서 제목 설정
-    st.title("최근 한 달 출현 횟수")
+    st.title("최근 한 달 출현")
 
     # x축 및 y축 설정
     x = 통계["번호"]
@@ -162,7 +162,7 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
 
 
     # Streamlit에서 제목 설정
-    st.title("로또 번호 연속 출현 횟수")
+    st.title("로또 번호 연속 출현")
 
     # x축 및 y축 설정
     x = 통계["번호"]
@@ -197,18 +197,8 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
     plt.close()  # Streamlit에서 plt 객체를 클리어
 
 
-
-
-
-
-
-
-
-
-
-
     # Streamlit에서 제목 설정
-    st.title("로또 번호 연속 미출현 횟수")
+    st.title("로또 번호 연속 미출현")
 
     # x축 및 y축 설정
     x = 통계["번호"]
