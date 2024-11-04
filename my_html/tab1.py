@@ -107,9 +107,9 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
     plt.xticks(ticks=x[::2], labels=x[::2])
 
     # 그래프 레이블 및 제목 설정
-    plt.title("각 번호에 대한 연속 미출현 횟수", fontproperties=font_prop, fontsize=16)
+    plt.title("최근 100회 동안 출현 횟수", fontproperties=font_prop, fontsize=16)
     plt.xlabel("로또 번호", fontproperties=font_prop, fontsize=14)
-    plt.ylabel("연속 미출현 횟수", fontproperties=font_prop, fontsize=14)
+    plt.ylabel("횟수", fontproperties=font_prop, fontsize=14)
     
     # y축의 범위를 조정하여 적절한 눈금 표시
     plt.ylim(0, max(y) * 1.1)  # 최대값보다 약간 높은 값으로 y축 설정
@@ -127,7 +127,7 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
     
     
     # Streamlit에서 제목 설정
-    st.title("최근 한 달 출현")
+    st.title("최근 4회 출현")
 
     # x축 및 y축 설정
     x = 통계["번호"]
@@ -148,9 +148,9 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
     plt.xticks(ticks=x[::2], labels=x[::2])
 
     # 그래프 레이블 및 제목 설정
-    plt.title("각 번호에 대한 연속 미출현 횟수", fontproperties=font_prop, fontsize=16)
+    plt.title("최근 4회 동안 출현 횟수", fontproperties=font_prop, fontsize=16)
     plt.xlabel("로또 번호", fontproperties=font_prop, fontsize=14)
-    plt.ylabel("연속 미출현 횟수", fontproperties=font_prop, fontsize=14)
+    plt.ylabel("횟수", fontproperties=font_prop, fontsize=14)
 
     # 각 막대 위에 번호 표시
     for bar in bars:
@@ -160,6 +160,8 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
     # 그래프를 Streamlit에 표시
     st.pyplot(plt)
     plt.close()  # Streamlit에서 plt 객체를 클리어
+
+
 
 
     # Streamlit에서 제목 설정
@@ -184,9 +186,9 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
     plt.xticks(ticks=x[::2], labels=x[::2])
 
     # 그래프 레이블 및 제목 설정
-    plt.title("각 번호에 대한 연속 미출현 횟수", fontproperties=font_prop, fontsize=16)
+    plt.title("최근 연속으로 나온 횟수", fontproperties=font_prop, fontsize=16)
     plt.xlabel("로또 번호", fontproperties=font_prop, fontsize=14)
-    plt.ylabel("연속 미출현 횟수", fontproperties=font_prop, fontsize=14)
+    plt.ylabel("횟수", fontproperties=font_prop, fontsize=14)
 
     # 각 막대 위에 번호 표시
     for bar in bars:
@@ -220,9 +222,9 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
     plt.xticks(ticks=x[::2], labels=x[::2])
 
     # 그래프 레이블 및 제목 설정
-    plt.title("각 번호에 대한 연속 미출현 횟수", fontproperties=font_prop, fontsize=16)
+    plt.title("최근 연속으로 안나온 횟수", fontproperties=font_prop, fontsize=16)
     plt.xlabel("로또 번호", fontproperties=font_prop, fontsize=14)
-    plt.ylabel("연속 미출현 횟수", fontproperties=font_prop, fontsize=14)
+    plt.ylabel("횟수", fontproperties=font_prop, fontsize=14)
 
     # 각 막대 위에 번호 표시
     for bar in bars:
