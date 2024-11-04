@@ -79,11 +79,14 @@ def display_current_numbers(lotto_instance,최근회차,전체기록):
         통계.append(draw_lotto_numbers.analyze_number(전체기록, 최근회차, i))
     
     통계 = pd.DataFrame(통계)
-        
+            
+    # 한글 폰트 설정
+    plt.rcParams['font.family'] = 'Malgun Gothic' 
+    plt.rcParams['font.size'] = 12  # 폰트 크기 설정
+    
     # Streamlit에서 제목 설정
     st.title("로또 번호의 연속 미출현 횟수")
-
-        
+    
     # x축 및 y축 설정
     x = 통계["번호"]
     y = 통계["연속 미출현 횟수"]
