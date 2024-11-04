@@ -57,5 +57,5 @@ def display_lotto_numbers(numbers):
 
 def draw_number(최근회차, 전체기록, n = 1):
     for _ in range(n):  # n을 사용하여 지정된 횟수만큼 반복
-        draw_numbers = draw_lotto_numbers.draw_lotto_numbers(최근회차, 전체기록)
+        draw_numbers = draw_lotto_numbers.draw_lotto_numbers(최근회차, 전체기록,[3,4])
         display_lotto_numbers(draw_numbers.iloc[0].to_dict())

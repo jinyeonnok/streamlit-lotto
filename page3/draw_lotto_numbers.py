@@ -72,7 +72,7 @@ def analyze_number(df, draw_number, number) -> dict:
         "최근 4회차 출현 횟수": recent_4_count,
     }
 
-def draw_lotto_numbers(최근회차, 전체기록, scaler = scaler) -> pd.DataFrame:
+def draw_lotto_numbers(최근회차, 전체기록, set_num = None) -> pd.DataFrame:
     results = []
     for number in range(1, 46):
         record = pd.DataFrame([analyze_number(전체기록, 최근회차, number)])
@@ -97,10 +97,26 @@ def draw_lotto_numbers(최근회차, 전체기록, scaler = scaler) -> pd.DataFr
     
     results['확률'] = results['확률'] / results['확률'].sum()
     
-    selected_numbers = np.random.choice(results['번호'], size=6, replace=False, p=results['확률'])
-    sorted_numbers = np.sort(selected_numbers)
+    if set_num is not None:
+        remaining_count = 6 - len(set_num)  # 필요한 추가 번호의 개수
+        available_numbers = results[~results['번호'].isin(set_num)]  # 고정 번호를 제외한 번호들
+        selected_numbers = np.random.choice(
+            available_numbers['번호'],
+            size=remaining_count,
+            replace=False,
+            p=available_numbers['확률']
+        )
+        # 고정 번호와 추가 선택된 번호를 합치고 정렬
+        final_numbers = np.sort(np.concatenate((set_num, selected_numbers)))
+    else:
+        # 고정 번호가 없을 때는 6개의 번호를 확률에 따라 무작위로 선택
+        selected_numbers = np.random.choice(results['번호'], size=6, replace=False, p=results['확률'])
+        final_numbers = np.sort(selected_numbers)
     
-    df_numbers = pd.DataFrame([sorted_numbers], columns=[1, 2, 3, 4, 5, 6])
+    # 결과를 데이터프레임으로 정리
+    df_numbers = pd.DataFrame([final_numbers], columns=[1, 2, 3, 4, 5, 6])
+        
+
 
     return df_numbers
 
