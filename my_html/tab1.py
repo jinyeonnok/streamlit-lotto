@@ -32,6 +32,7 @@ def display_lotto_numbers(numbers):
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            margin-bottom: 20px;
         }
         .lotto-ball {
             border-radius: 50%;
@@ -60,7 +61,6 @@ def display_lotto_numbers(numbers):
     lotto_balls_html += '</div>'
     
     st.markdown(lotto_balls_html, unsafe_allow_html=True)
-
 
 
 
@@ -116,16 +116,4 @@ def display_current_numbers(lotto_instance, 최근회차, 전체기록):
     # 그래프를 Streamlit에 표시
     st.pyplot(plt)
     plt.close()  # Streamlit에서 plt 객체를 클리어
-
-    # 확대 및 축소 버튼 설정
-    if st.session_state.zoomed:
-        if st.button("뒤로가기"):
-            st.session_state.zoomed = False  # 축소 상태로 변경
-            st.experimental_rerun()  # 페이지 새로 고침
-    else:
-        if st.button("확대"):
-            st.session_state.zoomed = True  # 확대 상태로 변경
-            st.experimental_rerun()  # 페이지 새로 고침
-    
-    
 
