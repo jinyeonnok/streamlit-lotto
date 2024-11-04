@@ -100,6 +100,9 @@ def draw_lotto_numbers(최근회차, 전체기록, set_num = None) -> pd.DataFra
     if set_num is not None:
         remaining_count = 6 - len(set_num)  # 필요한 추가 번호의 개수
         available_numbers = results[~results['번호'].isin(set_num)]  # 고정 번호를 제외한 번호들
+        # 확률 합이 1인지 확인하고 조정
+        available_numbers['확률'] = available_numbers['확률'] / available_numbers['확률'].sum()
+
         selected_numbers = np.random.choice(
             available_numbers['번호'],
             size=remaining_count,
