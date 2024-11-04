@@ -1,40 +1,31 @@
 # main.py
 import streamlit as st
+import pandas as pd
 from page3.get_data import Lotto_class
 from my_html.tab1 import display_current_numbers 
 from my_html.tab2 import display_past_records    
 from my_html.tab3 import draw_number    
 
+
 # Lotto_class의 인스턴스 생성
 lotto_instance = Lotto_class()
+
+# 전체 기록을 캐시하는 함수
+@st.cache_data
+def load_all_records():
+    최근회차 = lotto_instance.최근회차()
+    전체기록 = pd.DataFrame(lotto_instance.download_records(1, 최근회차)).transpose()
+    전체기록.index = 전체기록.index.str.replace('회차', '').astype(int)
+    return 전체기록
+
+# 전체 기록을 한 번만 불러오기
+전체기록 = load_all_records()
 
 st.title('이번주 당첨번호')
 
 최근회차 = lotto_instance.최근회차()
 st.title(f'최근 회차 : {최근회차}')
 
-# HTML 및 CSS 스타일
-st.markdown("""
-<style>
-    .lotto-ball {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        color: white;
-        text-align: center;
-        line-height: 50px;
-        font-size: 20px;
-        margin: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-    .lotto-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-</style>
-""", unsafe_allow_html=True)
 
 # 탭 추가
 tab1, tab2, tab3 = st.tabs(["현재 당첨 번호", "과거 당첨 기록", "AI 로또 추첨기"])

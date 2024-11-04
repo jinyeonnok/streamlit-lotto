@@ -58,4 +58,14 @@ def display_current_numbers(lotto_instance):
     최근회차 = lotto_instance.최근회차()
     당첨번호 = lotto_instance.check_num(최근회차)
     display_lotto_numbers(당첨번호)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
