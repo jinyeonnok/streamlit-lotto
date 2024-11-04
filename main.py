@@ -7,20 +7,7 @@ from my_html.tab2 import display_past_records
 from my_html.tab3 import draw_number    
 
 
-
-st.markdown(
-    """
-    <head>
-        <meta property="og:title" content="내 Streamlit 애플리케이션" />
-        <meta property="og:description" content="1등 5번만 하자" />
-        <meta property="og:image" content="https://blog.kakaocdn.net/dn/Nfztm/btsKwONI8Va/yoGifXJF9EVMihkuRQbOB0/img.png" />
-        <meta property="og:url" content="https://nryotoxmeyrvjplwba3ohf.streamlit.app/display" />
-    </head>
-    """,
-    unsafe_allow_html=True
-)
-
-
+st.set_page_config(page_title="진연녹의 AI 로또 추첨기!!")
 
 
 
