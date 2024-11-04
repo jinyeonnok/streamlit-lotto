@@ -81,7 +81,7 @@ def display_current_numbers(lotto_instance,최근회차,전체기록):
     통계 = pd.DataFrame(통계)
             
     # 한글 폰트 설정
-    plt.rcParams['font.family'] = 'Malgun Gothic' 
+    plt.rcParams['font.family'] =  'NanumGothic'
     plt.rcParams['font.size'] = 12  # 폰트 크기 설정
     
     # Streamlit에서 제목 설정
@@ -99,7 +99,7 @@ def display_current_numbers(lotto_instance,최근회차,전체기록):
     bars = plt.bar(x, y, color=colors)
     
     # x축의 눈금 설정 (3당 하나씩)
-    plt.xticks(ticks=x[::3], labels=x[::3])  # 3당 하나씩 보이도록 설정
+    plt.xticks(ticks=x[::2], labels=x[::2])  # 3당 하나씩 보이도록 설정
     
     # 그래프 레이블 및 제목 설정
     plt.title("각 번호에 대한 연속 미출현 횟수")
