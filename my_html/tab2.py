@@ -16,7 +16,7 @@ def get_color(number):
         return "#28a745"  # 녹색
     else:
         return "#000000"  # 기본 색상
-
+    
 def display_lotto_numbers(numbers):
     lotto_balls_html = '''
     <style>
