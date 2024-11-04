@@ -37,7 +37,7 @@ with tab2:
 
 with tab3:
     
-    input_numbers = st.text_input("고정 번호를 입력하세요 (예: 3, 5, 12 또는 공백):")
+    input_numbers = st.text_input("고정 번호를 입력하세요\n(예: 공백 또는 3, 5, 12):")
     
     # 사용자가 몇 개의 번호를 추첨할지 입력할 수 있는 텍스트 입력 필드 추가
     num_draws = st.number_input('몇 개의 추가 번호를 뽑으시겠습니까?', min_value=1, max_value=10, value=3)
